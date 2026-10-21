@@ -14,10 +14,6 @@
 
 companies:
   # --- Big-company targets (Workday) ---
-  - name: Dell
-    ats: workday
-    host: dell.wd1.myworkdayjobs.com
-    site: External
   - name: Intel
     ats: workday
     host: intel.wd1.myworkdayjobs.com
@@ -68,7 +64,7 @@ companies:
     ats: lever
     slug: plaid
   - name: Mercury
-    ats: ashby
+    ats: greenhouse
     slug: mercury
 
   # --- High-growth SaaS with strong GTM teams ---
