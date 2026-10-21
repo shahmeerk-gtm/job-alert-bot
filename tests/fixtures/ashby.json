@@ -1,0 +1,4 @@
+{"jobs": [
+  {"id": "r1", "title": "GTM Operations Analyst", "location": "Remote", "isListed": true, "jobUrl": "https://jobs.ashbyhq.com/ramp/r1", "address": {"postalAddress": {"addressCountry": "United States"}}},
+  {"id": "r2", "title": "Growth Marketing Manager", "location": "New York", "isListed": false, "jobUrl": "https://jobs.ashbyhq.com/ramp/r2"}
+]}

@@ -1,0 +1,89 @@
+# Companies to watch.
+#
+# Each entry needs a name, the ATS (hiring system) behind its careers page,
+# and the identifier that ATS uses for the company:
+#
+#   greenhouse: slug from boards.greenhouse.io/<slug> or job-boards.greenhouse.io/<slug>
+#   lever:      slug from jobs.lever.co/<slug>
+#   ashby:      slug from jobs.ashbyhq.com/<slug>
+#   workday:    host + site from https://<host>/<site>  (e.g. dell.wd1.myworkdayjobs.com/External)
+#
+# Not sure a slug is right? Run `python job_alert.py --check` and the script
+# reports which boards respond. Boards that fail are skipped, never fatal.
+# To add a company, open its careers page, click any job, and read the slug from the URL.
+
+companies:
+  # --- Big-company targets (Workday) ---
+  - name: Dell
+    ats: workday
+    host: dell.wd1.myworkdayjobs.com
+    site: External
+  - name: Intel
+    ats: workday
+    host: intel.wd1.myworkdayjobs.com
+    site: External
+  - name: General Motors
+    ats: workday
+    host: generalmotors.wd5.myworkdayjobs.com
+    site: Careers_GM
+  - name: Charles Schwab
+    ats: workday
+    host: schwab.wd1.myworkdayjobs.com
+    site: External
+
+  # --- Marketing tech / GTM tools (they hire marketing ops people who know the stack) ---
+  - name: HubSpot
+    ats: greenhouse
+    slug: hubspotjobs
+  - name: Braze
+    ats: greenhouse
+    slug: braze
+  - name: Klaviyo
+    ats: greenhouse
+    slug: klaviyo
+  - name: Iterable
+    ats: greenhouse
+    slug: iterable
+  - name: Clay
+    ats: ashby
+    slug: claylabs
+  - name: Gong
+    ats: greenhouse
+    slug: gongio
+  - name: Outreach
+    ats: greenhouse
+    slug: outreach
+
+  # --- Fintech (matches your Nirvana / hedge fund background) ---
+  - name: Addepar
+    ats: greenhouse
+    slug: addepar1
+  - name: Ramp
+    ats: ashby
+    slug: ramp
+  - name: Brex
+    ats: greenhouse
+    slug: brex
+  - name: Plaid
+    ats: lever
+    slug: plaid
+  - name: Mercury
+    ats: ashby
+    slug: mercury
+
+  # --- High-growth SaaS with strong GTM teams ---
+  - name: Notion
+    ats: ashby
+    slug: notion
+  - name: Airtable
+    ats: greenhouse
+    slug: airtable
+  - name: Datadog
+    ats: greenhouse
+    slug: datadog
+  - name: Samsara
+    ats: greenhouse
+    slug: samsara
+  - name: Figma
+    ats: greenhouse
+    slug: figma
