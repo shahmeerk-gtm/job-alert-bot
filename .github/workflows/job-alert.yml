@@ -1,0 +1,50 @@
+name: Job alert
+
+on:
+  schedule:
+    # Every 3 hours from ~7am to ~7pm Central (times are UTC)
+    - cron: "17 12-23/3 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "run = normal run, check = test every board, dry-run = list matches without emailing"
+        default: run
+        type: choice
+        options: [run, check, dry-run]
+
+permissions:
+  contents: write   # lets the workflow save seen_jobs.json back to the repo
+
+jobs:
+  alert:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Run job alert
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          ALERT_TO: ${{ secrets.ALERT_TO }}
+        run: |
+          MODE="${{ github.event.inputs.mode || 'run' }}"
+          if [ "$MODE" = "check" ]; then python job_alert.py --check
+          elif [ "$MODE" = "dry-run" ]; then python job_alert.py --dry-run
+          else python job_alert.py
+          fi
+
+      - name: Save seen jobs
+        if: github.event_name == 'schedule' || github.event.inputs.mode == 'run'
+        run: |
+          git config user.name "job-alert-bot"
+          git config user.email "job-alert-bot@users.noreply.github.com"
+          git add seen_jobs.json
+          git diff --cached --quiet || git commit -m "Update seen jobs"
+          git push
