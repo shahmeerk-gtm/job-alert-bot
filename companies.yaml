@@ -1,16 +1,11 @@
-# Companies to watch.
-#
-# Each entry needs a name, the ATS (hiring system) behind its careers page,
-# and the identifier that ATS uses for the company:
-#
-#   greenhouse: slug from boards.greenhouse.io/<slug> or job-boards.greenhouse.io/<slug>
+# Companies to watch. Each entry needs a name, the ATS behind its careers page,
+# and the company's identifier in that ATS:
+#   greenhouse: slug from job-boards.greenhouse.io/<slug>
 #   lever:      slug from jobs.lever.co/<slug>
 #   ashby:      slug from jobs.ashbyhq.com/<slug>
-#   workday:    host + site from https://<host>/<site>  (e.g. dell.wd1.myworkdayjobs.com/External)
-#
-# Not sure a slug is right? Run `python job_alert.py --check` and the script
-# reports which boards respond. Boards that fail are skipped, never fatal.
-# To add a company, open its careers page, click any job, and read the slug from the URL.
+#   workday:    host + site from https://<host>/<site>
+# Not supported (use the company's own email job alerts): Dell (Oracle),
+# Schwab (iCIMS), Nestlé (SuccessFactors), IBM.
 
 companies:
   # --- Big-company targets (Workday) ---
@@ -22,12 +17,8 @@ companies:
     ats: workday
     host: generalmotors.wd5.myworkdayjobs.com
     site: Careers_GM
-  - name: Charles Schwab
-    ats: workday
-    host: schwab.wd1.myworkdayjobs.com
-    site: External
 
-  # --- Marketing tech / GTM tools (they hire marketing ops people who know the stack) ---
+  # --- Marketing tech / GTM tools ---
   - name: HubSpot
     ats: greenhouse
     slug: hubspotjobs
@@ -47,10 +38,10 @@ companies:
     ats: greenhouse
     slug: gongio
   - name: Outreach
-    ats: greenhouse
+    ats: lever
     slug: outreach
 
-  # --- Fintech (matches your Nirvana / hedge fund background) ---
+  # --- Fintech ---
   - name: Addepar
     ats: greenhouse
     slug: addepar1
@@ -61,13 +52,13 @@ companies:
     ats: greenhouse
     slug: brex
   - name: Plaid
-    ats: lever
+    ats: ashby
     slug: plaid
   - name: Mercury
     ats: greenhouse
     slug: mercury
 
-  # --- High-growth SaaS with strong GTM teams ---
+  # --- High-growth SaaS ---
   - name: Notion
     ats: ashby
     slug: notion
