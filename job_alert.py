@@ -44,16 +44,17 @@ INCLUDE_KEYWORDS = [
     r"email marketing", r"lifecycle", r"\bcrm\b", r"growth marketing",
     r"\bgrowth\b", r"demand gen", r"campaign", r"hubspot", r"marketo",
     r"marketing analyst", r"marketing specialist", r"marketing coordinator",
-    r"marketing associate", r"marketing manager",
+    r"marketing associate", r"marketing assistant", r"marketing manager",
 ]
 
-# ...and none of these (too senior, or sales disguised as marketing).
+# ...and none of these (too senior, not marketing, or sales disguised as marketing).
 EXCLUDE_KEYWORDS = [
     r"\bdirector\b", r"\bvp\b", r"vice president", r"\bhead of\b",
-    r"\bprincipal\b", r"\bstaff\b", r"\bchief\b", r"senior manager",
-    r"sr\.? manager", r"account executive", r"sales development",
+    r"\bprincipal\b", r"\bstaff\b", r"\bchief\b", r"\bsenior\b", r"\bsr\b\.?",
+    r"\blead\b", r"account executive", r"sales development",
     r"business development rep", r"\bsdr\b", r"\bbdr\b", r"\bintern\b",
-    r"engineer", r"developer",
+    r"engineer", r"developer", r"scientist", r"product manager",
+    r"designer", r"recruit", r"executive assistant", r"compensation",
 ]
 
 US_STATES = {
@@ -255,7 +256,7 @@ def build_email(jobs: list[Job], failures: list[str]) -> tuple[str, str]:
 def send_email(subject: str, html: str) -> None:
     user = os.environ["GMAIL_ADDRESS"]
     password = os.environ["GMAIL_APP_PASSWORD"]
-    to = os.environ.get("ALERT_TO", user)
+    to = os.environ.get("ALERT_TO") or user  # blank secret falls back to sender
     msg = MIMEMultipart("alternative")
     msg["Subject"], msg["From"], msg["To"] = subject, user, to
     msg.attach(MIMEText(html, "html"))
