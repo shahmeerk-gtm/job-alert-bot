@@ -20,6 +20,8 @@ companies.yaml ──► fetch every board ──► filter titles + locations �
 4. **Notify.** Emails a digest grouped by company, with direct links to apply.
 5. **Run on a schedule.** GitHub Actions runs it every 3 hours during the day for free, so it works even when my laptop is off.
 
+   ![Example alert email](email-screenshot.png)
+   
 It's built to be resilient: if one company's board is down or changes, the bot logs it, notes it in the email, and keeps checking the rest.
 
 ## Tech
